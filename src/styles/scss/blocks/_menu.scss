@@ -1,0 +1,217 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 0 28px;
+
+    // Menu logo
+
+    &__logo {
+        display: block;
+        width: 122px;
+        height: 30px; 
+    }
+
+    // Burger menu icon
+
+    &__burger {
+        display: block;
+        width: 24px;
+        height: 18px;
+        position: relative;
+        z-index: 5;
+        cursor: pointer;
+
+        span, &::before, &::after {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #FFFFFF;
+            transition: transform 0.3s;
+        }
+
+        &::before, &::after {
+            content: '';
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        span {
+            top: 50%;
+            transform: scale(1) translate(0px, -50%);
+        }
+
+        &.active {
+
+            span, &::before, &::after {
+                background-color: $dark;
+            }
+
+            span {
+                transform: scale(0) translate(0px, -50%);
+            }
+
+            &::before {
+                top: 50%;
+                transform: rotate(-45deg) translate(0, -50%);
+            }
+
+            &::after {
+                bottom: 50%;
+                transform: rotate(45deg) translate(0, 50%);
+            }
+        }
+    }
+
+    // Menu content
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        top: -100%;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 1);
+        padding: 80px 30px;
+        transition: top 0.5s;
+        overflow: auto;
+
+        &.active {
+            top: 0;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+
+        &-item {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 150%;
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin: 0 0 20px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // Social media links
+
+    &__social {
+        display: none;
+
+        &--mobile {
+            display: flex;
+        }
+
+        &--mobile > a {
+            font-size: 28px;
+            line-height: 0px;
+            text-decoration: none;
+            color: $dark;
+            margin: 0 20px 0 0;   
+
+            &:hover,
+            &:focus {
+                color: $accent;
+            }
+        }
+    }
+}
+
+@media (min-width: $brp-md) {
+    .menu {
+        &__burger {
+            display: none;
+        }
+
+        &__content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 420px; 
+
+            &-item {
+                font-size: 14px;
+                display: block;
+                font-weight: 500;
+                line-height: 16px;
+                color: #FFFFFF;
+                text-decoration: none;
+                padding: 8px 10px;
+                margin: 0 auto;
+                transition: all 0.3s;
+    
+                &:hover,
+                &:focus {
+                    background-color: rgba(196, 196, 196, 0.2);
+                    border-radius: 0px 5px;
+                }
+            }
+        }
+
+        &__social {
+            display: flex;
+            padding: 8px 9px;
+            background-color: rgba(196, 196, 196, 0.25);
+            border-radius: 70px;
+
+            &-item {
+                font-size: 16px;
+                line-height: 0px;
+                text-decoration: none;
+                color:rgba(255, 255, 255, 0.75);
+                margin: 0 6px;   
+                transition: all 0.3s;
+    
+                &:hover,
+                &:focus {
+                    color: $accent;
+                }
+            }
+    
+            &--mobile {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: $brp-lg) {
+    .menu {
+        
+        &__list {
+            width: 500px;
+
+            &-item {
+                padding: 8px 15px; 
+            }
+        }
+    }
+}

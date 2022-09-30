@@ -65,7 +65,7 @@ function watch() {
     })
     gulp.watch(paths.html.src).on('change', browserSync.reload);
     gulp.watch(paths.styles.src, styles);
-    // gulp.watch(paths.scripts.src, scripts);
+    gulp.watch(paths.scripts.src, scripts);
 }
 
 // Команды для запуска задач
@@ -73,4 +73,3 @@ function watch() {
 const dev = gulp.parallel(styles, scripts, watch);
 
 exports.default = dev;
-exports.convertImage = convertImage;

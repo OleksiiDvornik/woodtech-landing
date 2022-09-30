@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Stylesheets and Fonts -->
+        <link rel="stylesheet" href="./styles/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="./styles/css/style.css">
-        <link rel="stylesheet" href="../node_modules/swiper/swiper-bundle.min.css">
         <!-- Favicons -->
         <link rel="icon" type="image/svg+xml" href="./img/favicons/favicon.svg">
         <link rel="icon" type="image/png" href="./img/favicons/favicon-48x48.png" sizes="48x48">
@@ -16,11 +16,96 @@
         <link rel="mask-icon" href="./img/favicons/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#f88500">
         <meta name="theme-color" content="#ffffff">
+        <!-- Scripts -->
+        <script src="scripts/bundle.js" defer></script>
         <!-- Extra meta tags -->
         <title>Woodtech. Создаём тёплую атмосферу вашего отдыха</title>
         <meta name="description" content="Компания Woodtech. Создаём тёплую атмосферу вашего отдыха в деревянном стиле">
 </head>
-<body>
-    
+<body class="body">
+    <header class="header">
+        <h1 class="visually-hidden">Woodhouse. Разработка и реализация красивых интерьеров из дерева</h1>
+        <div class="header__navbar">
+            <div class="container">
+                <div class="menu header__menu">
+                    <a href="#"><img class="menu__logo" src="./img/logo-white.svg" alt="Woodtech logo"></a>
+                    <div class="menu__burger">
+                        <span></span>
+                    </div>
+                    <div class="menu__content">
+                        <nav class="menu__list">
+                            <a class="menu__list-item" href="/index.html">Главная</a>
+                            <a class="menu__list-item" href="/projects.html">Проекты</a>
+                            <a class="menu__list-item" href="/services.html">Услуги</a>
+                            <a class="menu__list-item" href="/blog.html">Блог</a>
+                            <a class="menu__list-item" href="/about.html">Компания</a>
+                        </nav>
+                        <div class="menu__social menu__social--mobile">
+                            <a class="menu__social-item _icon-ig" href="#"></a>
+                            <a class="menu__social-item _icon-fb" href="#"></a>
+                            <a class="menu__social-item _icon-tw" href="#"></a>
+                            <a class="menu__social-item _icon-li" href="#"></a>
+                        </div>
+                    </div>
+                    <div class="menu__social menu__social--desktop">
+                        <a class="menu__social-item _icon-ig" href="#"></a>
+                        <a class="menu__social-item _icon-fb" href="#"></a>
+                        <a class="menu__social-item _icon-tw" href="#"></a>
+                        <a class="menu__social-item _icon-li" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider header__slider">
+            <div class="slider__list swiper-wrapper">
+                <div class="slider__item swiper-slide">
+                    <picture>
+                        <source srcset="./img/header-slider/slides/slide-1.avif" type="image/avif">
+                        <source srcset="./img/header-slider/slides/slide-1.webp" type="image/webp">
+                        <img class="slider__item-cover" src="./img/header-slider/slides/slide-1.jpg" alt="First slide">
+                    </picture>
+                </div>
+                <div class="slider__item swiper-slide">
+                    <picture>
+                        <source srcset="./img/header-slider/slides/slide-2.avif" type="image/avif">
+                        <source srcset="./img/header-slider/slides/slide-2.webp" type="image/webp">
+                        <img class="slider__item-cover" src="./img/header-slider/slides/slide-2.jpg" alt="Second slide">
+                    </picture>
+                </div>
+                <div class="slider__item swiper-slide">
+                    <picture>
+                        <source srcset="./img/header-slider/slides/slide-3.avif" type="image/avif">
+                        <source srcset="./img/header-slider/slides/slide-3.webp" type="image/webp">
+                        <img class="slider__item-cover" src="./img/header-slider/slides/slide-3.jpg" alt="Third slide">
+                    </picture>
+                </div>
+            </div>
+            <div class="slider__content">
+                <p class="slider__content-title">Woodhouse</p>
+                <p class="slider__content-subtitle">дизайн на высоком уровне</p>
+                <p class="slider__content-description">
+                    Разработка и реализация красивых интерьеров из дерева ещё никогда не была так доступна. Интерьеры из дерева различной породы сделают ваш дом уютным и тёплым, радуя вас и ваших гостей
+                </p>
+            </div>
+            <div class="slider__control">
+                <div class="slider__control-pages swiper-pagination"></div>
+                <div class="slider__control-scrollbar"></div>
+                <div class="slider__control-navigation">
+                    <svg class="slider__control-navigation-prev">
+                        <use xlink:href="./img/header-slider/slider-sprite.svg#arrow-left"></use>
+                    </svg>
+                    <svg class="slider__control-navigation-next">
+                        <use xlink:href="./img/header-slider/slider-sprite.svg#arrow-right"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+
+    </main>
+    <footer class="footer">
+        
+    </footer>
 </body>
 </html>
