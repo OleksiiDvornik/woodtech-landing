@@ -102,10 +102,52 @@
         </div>
     </header>
     <main class="main">
-
+        <section class="guarantees">
+            <h2 class="visually-hidden">Заголовок</h2>
+            <div class="guarantees__wrapper container">
+                <div class="guarantees__content">
+                    <p class="guarantees__content-title">Нам доверяют</p>
+                    <ul class="guarantees__content-list">
+                        <li class="guarantees__content-item"><span>860</span> клиентов по всему миру</li>
+                        <li class="guarantees__content-item"><span>108</span> производителей мебели</li>
+                        <li class="guarantees__content-item"><span>36</span> лучших франчайзи</li>
+                        <li class="guarantees__content-item"><span>23</span> надёжных партнёра</li>
+                        <li class="guarantees__content-item"><span>12</span> поставщиков</li>
+                        <li class="guarantees__content-item"><span>85</span> сотрудников</li>
+                    </ul>
+                </div>
+                <div class="guarantees__cta">
+                    <p class="guarantees__cta-text">
+                        Позвоните нам или оставьте заявку на сайте. Мы перезвоним вам в течение 10 минут.
+                    </p>
+                    <a class="guarantees__cta-phone" href="tel:+380442701461">+38 (044) 270-14-61</a>
+                    <button class="guarantees__cta-button button" type="button" data-id="modalOpen">Оформить заявку сейчас</button>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="footer">
         
     </footer>
+    <div class="modal" data-id="modalWindow">
+        <div class="modal__wrapper">
+            <div class="modal__content">
+                <h3 class="modal__title">Оформить заявку</h3>
+                <form class="modal__form">
+                    <label>
+                        <input type="text" name="name" placeholder="Ваше имя..." required>
+                    </label>
+                    <label>
+                        <input type="text" name="phone" placeholder="Ваш телефон..." required>
+                    </label>
+                    <label>
+                        <textarea name="comments" rows="4" placeholder="Комментарий..."></textarea>
+                    </label>
+                    <button class="modal__form-button button" type="submit">Отправить</button>
+                </form>
+                <button class="modal__close" type="button" data-id="modalClose">&#10006;</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

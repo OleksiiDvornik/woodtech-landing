@@ -1,0 +1,21 @@
+.button {
+    font-family: $ff-primary;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 28px;
+    border: none;
+    background-color: $accent;
+    border-radius: 0 5px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #FF8D09;
+    }
+}
