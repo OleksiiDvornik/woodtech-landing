@@ -57,7 +57,11 @@ function scripts() {
 }
 
 function webpCreate() {
-    return gulp.src(['app/img/**/*.{png,jpg}', '!app/img/favicons/**/*.*'])
+    return gulp.src([
+            'app/img/**/*.{png,jpg}', 
+            '!app/img/favicons/**/*.*', 
+            '!app/img/partners/**/*.*'
+        ])
         .pipe(webp())
         .pipe(gulp.dest(paths.images.dest))
 }
