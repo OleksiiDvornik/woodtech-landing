@@ -1,0 +1,11 @@
+.subtitle {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: $accent;
+    
+    &::before {
+        content: '\\\\ '
+    }
+}

@@ -1,12 +1,15 @@
 // Импорт пакетов
 
 const gulp = require('gulp');
+const del = require('del');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemap = require('gulp-sourcemaps');
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
+const webp = require('gulp-cwebp');
+const imagemin = require("gulp-imagemin");
 
 // Пути к файлам
 
@@ -53,7 +56,27 @@ function scripts() {
         .pipe(browserSync.stream())
 }
 
+function webpCreate() {
+    return gulp.src(['app/img/**/*.{png,jpg}', '!app/img/favicons/**/*.*'])
+        .pipe(webp())
+        .pipe(gulp.dest(paths.images.dest))
+}
+
 // Задачи для продакшена
+
+function clean() {
+    return del(['dist'])
+}
+
+function imageMin() {
+    return gulp.src(paths.images.src)
+        .pipe(imagemin([
+            imagemin.mozjpeg({ progressive: true }),
+            imagemin.optipng({ optimizationLevel: 3 }),
+            imagemin.svgo()
+        ]))
+        .pipe(gulp.dest('dist/img'));
+}
 
 // Отслеживание изменений в файлах и запуск лайв сервера
 
@@ -71,5 +94,8 @@ function watch() {
 // Команды для запуска задач
 
 const dev = gulp.parallel(styles, scripts, watch);
+const build = gulp.series(clean, imageMin);
 
 exports.default = dev;
+exports.build = build;
+exports.webp = webpCreate;
