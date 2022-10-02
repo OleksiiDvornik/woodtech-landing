@@ -54,17 +54,17 @@ function ModalWindow(elements) {
     };
 
     this.openModalWindow = () => {
-        const { modalElement, form } = this.elements;
+        const { modalElement } = this.elements;
         document.body.classList.add('lock');
         modalElement.classList.add('active');
         window.addEventListener('keydown', this.closeModalWindow);
     };
 
     this.closeModalWindow = (event) => {
-        const { modalElement, closeButton, form} = this.elements;
+        const { modalElement, closeButton } = this.elements;
         if (event.target === modalElement || 
             event.target === closeButton ||
-            event.target === form ||
+            event.type === "submit" ||
             event.code === 'Escape') {
             modalElement.classList.remove('active');
             document.body.classList.remove('lock');

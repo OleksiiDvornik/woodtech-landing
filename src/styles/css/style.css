@@ -609,26 +609,24 @@
 }
 
 .modal {
+  display: flex;
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 5;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 0;
-  left: 0;
-  z-index: 10;
   visibility: hidden;
   opacity: 0;
+  transition: all 0.5s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .modal.active {
   visibility: visible;
   opacity: 1;
 }
-.modal__wrapper {
-  display: flex;
-  min-height: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 20px;
+.modal.active .modal__content {
+  transform: translate(0px, 0px);
+  opacity: 1;
 }
 .modal__content {
   display: flex;
@@ -637,8 +635,13 @@
   max-width: 400px;
   background-color: #FFFFFF;
   border-radius: 5px;
-  padding: 30px 20px;
   position: relative;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: translate(0px, -100%);
+  position: relative;
+  margin: auto;
+  padding: 30px 20px;
 }
 .modal__title {
   text-align: center;
