@@ -41,6 +41,17 @@ const mainSlider = new Swiper('.header__slider', {
     },
 });
 
+// Sub slider
+
+const advSlider = new Swiper('.sub-slider', { 
+    speed: 1400,
+    effect: 'fade',
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+    }
+});
+
 // Modal window
 
 function ModalWindow(elements) {

@@ -2,7 +2,7 @@
     background-color: $dark;
 
     &__header {
-        padding: 50px 0;
+        padding: 60px 0;
 
         &-wrapper {
             display: flex;
@@ -31,7 +31,7 @@
 
     &__main {
         background-color: #FAFAFA;
-        padding-bottom: 50px;
+        padding-bottom: 60px;
         position: relative;
 
         &-button {
@@ -145,7 +145,7 @@
     .works__articles {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto;
         column-gap: 20px;
     }
 }
@@ -183,10 +183,7 @@
     }
 
     .works__articles {
-        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto auto;
-        column-gap: 20px;
         align-items: stretch;
 
         &-item-title {
