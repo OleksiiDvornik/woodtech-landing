@@ -23,7 +23,7 @@ const paths = {
         dest: './src/styles/css/'
     },
     scripts: {
-        src: './src/scripts/index.js',
+        src: './src/scripts/modules/*.js',
         dest: './src/scripts/'
     },
     images: {
@@ -49,9 +49,10 @@ function styles() {
 }
 
 function scripts() {
-    return gulp.src(['./node_modules/swiper/swiper-bundle.js', paths.scripts.src])
+    return gulp.src(paths.scripts.src)
         .pipe(sourcemap.init())
-        .pipe(concat('bundle.js'))
+        .pipe(concat('index.js'))
+        .pipe(sourcemap.write("."))
         .pipe(gulp.dest(paths.scripts.dest))
         .pipe(browserSync.stream())
 }

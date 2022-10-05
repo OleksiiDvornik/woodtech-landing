@@ -8,6 +8,10 @@
     outline: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .body {
     font-family: $ff-primary;
     font-weight: 400;
