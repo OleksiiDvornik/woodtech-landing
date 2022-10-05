@@ -2,11 +2,19 @@
 
 const gulp = require('gulp');
 const del = require('del');
+const size = require('gulp-size');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemap = require('gulp-sourcemaps');
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
+const mediaQueries = require('gulp-group-css-media-queries');
+const cleanCSS = require('gulp-clean-css');
+const rename = require('gulp-rename');
+const replace = require('gulp-replace')
+const htmlmin = require('gulp-htmlmin');
 const concat = require('gulp-concat');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync').create();
 const webp = require('gulp-cwebp');
 const imagemin = require("gulp-imagemin");
@@ -28,7 +36,7 @@ const paths = {
     },
     images: {
         src: './src/img/**/*.+(jpg|png)',
-        dest: './src/img/'
+        dest: './src/img/',
     },
     fonts: {
         src: './src/fonts/*.*',
@@ -57,11 +65,25 @@ function scripts() {
         .pipe(browserSync.stream())
 }
 
+function imageMin() {
+    return gulp.src([
+            'src/img/**/*.{png,jpg}', 
+            '!src/img/favicons/**/*.*', 
+            '!src/img/partners/**/*.*'
+        ])
+        .pipe(imagemin([
+            imagemin.mozjpeg({ progressive: true }),
+            imagemin.optipng({ optimizationLevel: 3 }),
+            imagemin.svgo()
+        ]))
+        .pipe(gulp.dest(paths.images.dest));
+}
+
 function webpCreate() {
     return gulp.src([
-            'app/img/**/*.{png,jpg}', 
-            '!app/img/favicons/**/*.*', 
-            '!app/img/partners/**/*.*'
+            'src/img/**/*.{png,jpg}', 
+            '!src/img/favicons/**/*.*', 
+            '!src/img/partners/**/*.*'
         ])
         .pipe(webp())
         .pipe(gulp.dest(paths.images.dest))
@@ -73,15 +95,59 @@ function clean() {
     return del(['dist'])
 }
 
-function imageMin() {
-    return gulp.src(paths.images.src)
-        .pipe(imagemin([
-            imagemin.mozjpeg({ progressive: true }),
-            imagemin.optipng({ optimizationLevel: 3 }),
-            imagemin.svgo()
-        ]))
-        .pipe(gulp.dest('dist/img'));
+function rootCopy() {
+    return gulp.src(['./src/*.*', '!src/*.html'])
+        .pipe(gulp.dest('dist/'))
 }
+
+function fontsCopy() {
+    return gulp.src(paths.fonts.src)
+        .pipe(gulp.dest(paths.fonts.dest))
+}
+
+function libsCopy() {
+    return gulp.src('src/libs/*.*')
+        .pipe(gulp.dest('dist/libs'))
+}
+
+function htmlProd() {
+    return gulp.src(paths.html.src)
+        .pipe(replace('style.css', 'style.min.css'))
+        .pipe(replace('index.js', 'index.min.js'))
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(size())
+        .pipe(gulp.dest(paths.html.dest));
+}
+
+function stylesProd() {
+    return gulp.src(paths.styles.src)
+        .pipe(sass())
+        .pipe(mediaQueries())
+        .pipe(postcss([autoprefixer()]))
+        .pipe(cleanCSS())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(size())
+        .pipe(gulp.dest('dist/styles/css'));
+}
+
+function scriptsProd() {
+    return gulp.src('./src/scripts/index.js')
+        .pipe(babel({ presets: ['@babel/env'] }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(uglify())
+        .pipe(size())
+        .pipe(gulp.dest('dist/scripts'))
+}
+
+// function imageCopy() {
+//     return gulp.src([
+//         'src/img/favicons/**/*.*',
+//         'src/img/icons/**/*.*',
+//         'src/img/partners/**/*.*',
+//         'src/img/**/*.*{avif,webp,svg}'
+//     ])
+//     .pipe(gulp.dest('dist/img'))
+// }
 
 // Отслеживание изменений в файлах и запуск лайв сервера
 
@@ -99,7 +165,7 @@ function watch() {
 // Команды для запуска задач
 
 const dev = gulp.parallel(styles, scripts, watch);
-const build = gulp.series(clean, imageMin);
+const build = gulp.series(clean, rootCopy, fontsCopy, libsCopy, htmlProd, stylesProd, scriptsProd);
 
 exports.default = dev;
 exports.build = build;
