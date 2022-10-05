@@ -65,20 +65,6 @@ function scripts() {
         .pipe(browserSync.stream())
 }
 
-function imageMin() {
-    return gulp.src([
-            'src/img/**/*.{png,jpg}', 
-            '!src/img/favicons/**/*.*', 
-            '!src/img/partners/**/*.*'
-        ])
-        .pipe(imagemin([
-            imagemin.mozjpeg({ progressive: true }),
-            imagemin.optipng({ optimizationLevel: 3 }),
-            imagemin.svgo()
-        ]))
-        .pipe(gulp.dest(paths.images.dest));
-}
-
 function webpCreate() {
     return gulp.src([
             'src/img/**/*.{png,jpg}', 
@@ -139,15 +125,32 @@ function scriptsProd() {
         .pipe(gulp.dest('dist/scripts'))
 }
 
-// function imageCopy() {
-//     return gulp.src([
-//         'src/img/favicons/**/*.*',
-//         'src/img/icons/**/*.*',
-//         'src/img/partners/**/*.*',
-//         'src/img/**/*.*{avif,webp,svg}'
-//     ])
-//     .pipe(gulp.dest('dist/img'))
-// }
+function webpProd() {
+    return gulp.src([
+            'src/img/**/*.{png,jpg}', 
+            '!src/img/favicons/**/*.*', 
+            '!src/img/partners/**/*.*'
+        ])
+        .pipe(webp())
+        .pipe(gulp.dest('dist/img'))
+}
+
+function imageMin() {
+    return gulp.src([
+            'src/img/**/*.{png,jpg}', 
+        ])
+        .pipe(imagemin([
+            imagemin.mozjpeg({ progressive: true }),
+            imagemin.optipng({ optimizationLevel: 3 }),
+            imagemin.svgo()
+        ]))
+        .pipe(gulp.dest('dist/img'));
+}
+
+function imageCopy() {
+    return gulp.src('src/img/**/*.{svg,avif}')
+    .pipe(gulp.dest('dist/img/'))
+}
 
 // Отслеживание изменений в файлах и запуск лайв сервера
 
@@ -165,7 +168,7 @@ function watch() {
 // Команды для запуска задач
 
 const dev = gulp.parallel(styles, scripts, watch);
-const build = gulp.series(clean, rootCopy, fontsCopy, libsCopy, htmlProd, stylesProd, scriptsProd);
+const build = gulp.series(clean, rootCopy, fontsCopy, libsCopy, htmlProd, stylesProd, scriptsProd, webpProd, imageMin, imageCopy);
 
 exports.default = dev;
 exports.build = build;
