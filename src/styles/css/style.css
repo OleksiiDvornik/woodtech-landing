@@ -964,7 +964,8 @@ html {
 .advantages__content-item-link {
   font-weight: 800;
   line-height: 26px;
-  text-decoration-line: underline;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
   color: #333333;
 }
 .advantages__content-item-link:hover {
