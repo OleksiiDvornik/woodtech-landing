@@ -8,14 +8,14 @@ The page is designed according to the layout from Figma, has two sliders and a m
 
 ## Website overview
 
-![Best works section](https://i.ibb.co/T0J9LbQ/1.jpg)
+![Best works section](https://i.postimg.cc/5bZLVFJM/1.jpg)
 <span style="display: block; text-align: center;">*Best works section*</span>
 
-![About and partners sections](https://i.ibb.co/Zc3Lh2T/2.jpg)
+![About and partners sections](https://i.postimg.cc/VfLbRqqX/2.jpg)
 <span style="display: block; text-align: center;">*About and partners sections*</span>
 
-![Blog section and footer](https://i.ibb.co/1Tjh33K/3.jpg)
+![Blog section and footer](https://i.postimg.cc/qRzqdGwY/3.jpg)
 <span style="display: block; text-align: center;">*Blog section and footer*</span>
 
-![Modal window](https://i.ibb.co/hsH0XBT/4.jpg)
+![Modal window](https://i.postimg.cc/Qj15xxNK/4.jpg)
 <span style="display: block; text-align: center;">*Modal window*</span>
