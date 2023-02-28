@@ -1,6 +1,6 @@
 # Woodtech — Architectural company website
 
-![Website preview cover](https://repository-images.githubusercontent.com/546318440/f568152d-9c8d-45d1-9432-1c085b7fe492)
+![Website preview cover](https://repository-images.githubusercontent.com/546611766/fe1008c5-653f-4062-b7cc-a48efef74f02)
 
 Main page of an architectural company website layout based on the "Mobile first" principle and adapted to different types of devices.
 
